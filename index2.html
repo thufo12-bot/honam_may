@@ -13,8 +13,11 @@
             --uplus-magenta: #E6007E;
             --uplus-light-pink: #FFF5F9;
             --warm-rose: #FFCCD5;
+            --carnation-red: #FF4D6D;
+            --carnation-yellow: #FFD700;
+            --carnation-white: #FDFDFD;
             --text-main: #222222;
-            --text-sub: #555555;
+            --text-sub: #444444;
             --white: #ffffff;
         }
 
@@ -31,23 +34,23 @@
             text-align: center;
         }
 
-        /* [수정] 구간 간격 축소 및 높이 최적화 */
         section {
-            min-height: auto; /* 100vh 제거로 간격 뚫림 방지 */
+            min-height: auto;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px 15px; /* 상하 여백 축소 */
+            padding: 100px 10px 40px; /* 상단 여백을 100px로 늘려 큰 헤더 대응 */
             position: relative;
             overflow: hidden;
         }
 
+        /* [수정] 헤더 글씨 크기 확대 및 디자인 최적화 */
         header {
             position: fixed;
             top: 0; left: 0; width: 100%;
-            padding: 12px;
+            padding: 18px 10px; /* 패딩 소폭 확대 */
             background: rgba(255,255,255,0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #f0f0f0;
@@ -56,11 +59,25 @@
             justify-content: center;
             align-items: center;
         }
-        header .brand-wrap { font-weight: 800; font-size: 0.8rem; display: flex; gap: 5px; align-items: center; white-space: nowrap; }
+        header .brand-wrap { 
+            font-weight: 800; 
+            font-size: clamp(0.95rem, 4.5vw, 1.3rem); /* 글씨 크기 대폭 확대 */
+            display: flex; 
+            gap: 5px; 
+            align-items: center; 
+            white-space: nowrap; 
+            letter-spacing: -0.5px;
+        }
         header .highlight { color: var(--uplus-magenta); }
+        header .divider {
+            width: 1.5px;
+            height: 18px; /* 구분선 높이 확대 */
+            background: #ddd;
+            margin: 0 10px;
+        }
 
         h1.main-title { 
-            font-size: clamp(1.6rem, 7vw, 3.5rem); 
+            font-size: clamp(1.8rem, 8vw, 3.5rem); 
             font-weight: 900; 
             line-height: 1.2; 
             margin: 0 auto; 
@@ -69,230 +86,219 @@
         }
         h1.main-title span { color: var(--uplus-magenta); }
 
-        /* 배지 정중앙 고정 */
+        /* 배지 디자인 */
         .badge { 
             background: var(--uplus-magenta); 
             color: white; 
-            padding: 8px 15px; 
+            padding: 12px 25px; 
             border-radius: 50px; 
             font-weight: 800; 
-            margin: 0 auto 15px auto; 
+            margin: 10px auto 25px auto; 
             display: inline-block; 
-            font-size: clamp(0.7rem, 3.2vw, 1.1rem); 
-            box-shadow: 0 8px 15px rgba(230,0,126,0.15);
+            font-size: clamp(0.8rem, 3.5vw, 1.15rem); 
+            box-shadow: 0 8px 15px rgba(230,0,126,0.2);
             white-space: nowrap;
         }
         
-        /* [수정] 꽃 아이콘 대량 배치 및 애니메이션 */
+        /* 꽃 아이콘 설정 */
         .carnation-icon {
             position: absolute;
             z-index: 1;
-            animation: flowerFloat 6s ease-in-out infinite;
             pointer-events: none;
-            opacity: 0.85;
-        }
-        @keyframes flowerFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-            50% { transform: translateY(-15px) rotate(10deg) scale(1.1); }
+            opacity: 0.9;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
         }
 
-        /* 꽃 위치들 - 구석구석 알록달록하게 */
-        .f1 { width: 80px; height: 80px; top: 10%; left: -15px; }
-        .f2 { width: 70px; height: 70px; top: 15%; right: -10px; animation-delay: 1s; }
-        .f3 { width: 90px; height: 90px; bottom: 10%; left: 5%; animation-delay: 2s; }
-        .f4 { width: 100px; height: 100px; bottom: 5%; right: 2%; animation-delay: 0.5s; }
-        .f5 { width: 60px; height: 60px; top: 40%; left: 2%; opacity: 0.5; }
-        .f6 { width: 50px; height: 50px; top: 45%; right: 2%; opacity: 0.5; animation-delay: 3s; }
-        .f7 { width: 75px; height: 75px; top: 60%; left: 10%; opacity: 0.4; }
+        .f1 { width: 80px; height: 80px; top: 12%; left: -10px; transform: rotate(-15deg); }
+        .f2 { width: 70px; height: 70px; top: 18%; right: -5px; transform: rotate(20deg); }
+        .f3 { width: 95px; height: 95px; bottom: 5%; left: 2%; transform: rotate(10deg); }
+        .f4 { width: 85px; height: 85px; bottom: 8%; right: 2%; transform: rotate(-10deg); }
+        .f5 { width: 60px; height: 60px; top: 40%; left: 5%; opacity: 0.6; }
+        .f6 { width: 55px; height: 55px; top: 55%; right: 5%; opacity: 0.6; }
+        .f7 { width: 110px; height: 110px; top: 5%; left: 40%; opacity: 0.3; }
+        .f8 { width: 70px; height: 70px; top: 75%; left: 8%; opacity: 0.7; }
+        .f9 { width: 80px; height: 80px; top: 70%; right: 8%; opacity: 0.7; }
 
         .hero-gift-3d {
-            font-size: 5rem;
+            font-size: 5.5rem;
             color: var(--uplus-magenta);
-            margin-bottom: 10px;
-            filter: drop-shadow(0 15px 25px rgba(230, 0, 126, 0.2));
+            margin-bottom: 15px;
+            filter: drop-shadow(0 15px 30px rgba(230, 0, 126, 0.2));
             animation: giftFloat 3s ease-in-out infinite;
         }
         @keyframes giftFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         .hero-info {
-            font-size: clamp(0.85rem, 3.8vw, 1.6rem);
+            font-size: clamp(0.95rem, 4.3vw, 1.6rem);
             color: var(--uplus-magenta); font-weight: 900; background: white;
-            padding: 12px 25px; border-radius: 100px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            margin: 20px auto 0 auto; border: 2.3px solid var(--uplus-magenta);
+            padding: 15px 35px; border-radius: 100px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            margin: 25px auto 0 auto; border: 2.5px solid var(--uplus-magenta);
             white-space: nowrap;
             width: fit-content;
-            max-width: 92%;
+            max-width: 95%;
         }
 
         /* 방문 사은품 모바일 ㅁㅁㅁ */
         .gift-container { 
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px; 
-            width: 100%; 
-            max-width: 1100px; 
-            margin: 25px auto 0; 
-            z-index: 10;
-        }
-        .gift-item { 
-            background: white; border-radius: 15px; padding: 15px 5px; text-align: center; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid #f0f0f0; 
-        }
-        .gift-item i { font-size: 1.8rem; color: var(--uplus-magenta); margin-bottom: 8px; }
-        .gift-item h3 { font-size: 0.85rem; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.5px; }
-        .gift-item p { font-size: 0.65rem; color: #777; line-height: 1.3; }
-
-        /* 특가 단말기 그리드 모바일 ㅁㅁ */
-        .phone-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
             gap: 10px; 
             width: 100%; 
             max-width: 1100px; 
-            margin: 30px auto 0; 
+            margin: 35px auto 0; 
+            z-index: 10;
+        }
+        .gift-item { 
+            background: white; border-radius: 20px; padding: 20px 8px; text-align: center; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; 
+        }
+        .gift-item i { font-size: 2.2rem; color: var(--uplus-magenta); margin-bottom: 10px; }
+        .gift-item h3 { font-size: 1.15rem; font-weight: 900; margin-bottom: 6px; color: #000; }
+        .gift-item p { font-size: 0.9rem; color: var(--text-sub); line-height: 1.4; font-weight: 700; }
+
+        /* 특가 단말기 모바일 ㅁㅁ */
+        .phone-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
+            width: 100%; 
+            max-width: 1100px; 
+            margin: 35px auto 0; 
             z-index: 10;
         }
         .phone-card { 
-            background: #fff; border-radius: 20px; padding: 15px 10px; border: 1.5px solid #f2f2f2; text-align: center; 
+            background: #fff; border-radius: 25px; padding: 20px 12px; border: 1.5px solid #f2f2f2; text-align: center; 
             display: flex; flex-direction: column; align-items: center; width: 100%;
         }
         .card-visual { 
-            width: 100%; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; 
+            width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; 
             overflow: hidden;
         }
         .phone-card img { 
             max-width: 90%; max-height: 100%; object-fit: contain;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.06)); 
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.08)); 
         }
-        .phone-card h3 { font-size: 0.95rem; font-weight: 800; margin: 5px 0; color: #333; min-height: 2.2rem; display: flex; align-items: center; justify-content: center; }
-        .phone-card .price { font-size: 1.8rem; font-weight: 900; color: var(--uplus-magenta); }
-        .phone-card .sub-info { font-size: 0.75rem; color: #fff; background: var(--uplus-magenta); padding: 4px 10px; border-radius: 6px; margin-top: 8px; font-weight: 700; }
+        .phone-card h3 { font-size: 1rem; font-weight: 800; margin: 5px 0; color: #333; min-height: 2.2rem; display: flex; align-items: center; justify-content: center; }
+        .phone-card .price { font-size: 2rem; font-weight: 900; color: var(--uplus-magenta); }
+        .phone-card .sub-info { font-size: 0.85rem; color: #fff; background: var(--uplus-magenta); padding: 4px 10px; border-radius: 6px; margin-top: 8px; font-weight: 700; }
 
-        /* 유심변경 - 현금 문구 줄바꿈 방지 */
+        /* 유심변경 */
         .usim-offer { background-color: #f0f8ff; }
         .usim-box {
-            max-width: 950px; width: 100%; background: white; border-radius: 35px; padding: 35px 15px; text-align: center;
-            box-shadow: 0 20px 40px rgba(74, 144, 226, 0.08); border: 2.5px solid rgba(74, 144, 226, 0.05);
+            max-width: 950px; width: 100%; background: white; border-radius: 40px; padding: 45px 15px; text-align: center;
+            box-shadow: 0 25px 45px rgba(74, 144, 226, 0.08); border: 2.5px solid rgba(74, 144, 226, 0.05);
             margin: 0 auto;
         }
-        .usim-visual { font-size: 4rem; color: #4A90E2; margin-bottom: 15px; }
+        .usim-visual { font-size: 4.5rem; color: #4A90E2; margin-bottom: 20px; }
         .nowrap-title { 
             white-space: nowrap; 
-            font-size: clamp(0.9rem, 6vw, 2.5rem); 
+            font-size: clamp(1rem, 6vw, 2.5rem); 
             font-weight: 900; color: #222; margin-bottom: 15px; 
             display: block; width: 100%; letter-spacing: -1px;
         }
         .nowrap-title span { color: var(--uplus-magenta); }
         .usim-price {
-            font-size: clamp(1.8rem, 11vw, 5rem);
+            font-size: clamp(2.2rem, 12vw, 5rem);
             font-weight: 900; color: var(--uplus-magenta); 
             line-height: 1.1; margin: 15px 0;
             white-space: nowrap;
         }
 
-        /* 결합 할인 PC/모바일 정렬 */
+        /* 결합 할인 */
         .family-box { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-            width: 100%; 
-            max-width: 1100px; 
-            margin: 30px auto 0; 
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
+            display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1100px; 
+            margin: 35px auto 0; justify-content: center; align-items: center; z-index: 10;
         }
         .discount-card { 
-            background: white; padding: 30px 20px; border-radius: 30px; 
-            box-shadow: 0 15px 35px rgba(230,0,126,0.05); text-align: center;
-            border: 1.5px solid var(--warm-rose);
-            width: 100%;
-            max-width: 500px;
-            flex: 1;
+            background: white; padding: 35px 25px; border-radius: 35px; 
+            box-shadow: 0 15px 35px rgba(230,0,126,0.06); text-align: center;
+            border: 2.5px solid var(--warm-rose); width: 100%; max-width: 500px;
         }
-        .discount-card h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; color: var(--uplus-magenta); }
-        .price-value { font-size: 2.5rem; font-weight: 900; color: var(--uplus-magenta); }
+        .discount-card h2 { font-size: 2rem; font-weight: 900; margin-bottom: 10px; color: var(--uplus-magenta); }
+        .price-value { font-size: 2.8rem; font-weight: 900; color: var(--uplus-magenta); }
 
         /* 상담 신청 */
-        .apply { padding: 40px 15px; }
         .apply-box { 
-            max-width: 600px; width: 100%; background: white; padding: 35px 20px; 
-            border-radius: 35px; border: 1.5px solid #eee; box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            max-width: 600px; width: 100%; background: white; padding: 40px 25px; 
+            border-radius: 40px; border: 1.5px solid #eee; box-shadow: 0 25px 50px rgba(0,0,0,0.06);
             margin: 20px auto;
         }
-        .form-group { margin-bottom: 15px; }
+        .form-group { margin-bottom: 18px; }
         .form-group input, .form-group select { width: 100%; padding: 18px; border-radius: 12px; border: 1.5px solid #ddd; font-size: 1rem; background: #fafafa; }
-        .submit-btn { width: 100%; padding: 22px; background: var(--uplus-magenta); color: white; border: none; border-radius: 15px; font-size: 1.4rem; font-weight: 900; cursor: pointer; }
+        .submit-btn { width: 100%; padding: 22px; background: var(--uplus-magenta); color: white; border: none; border-radius: 15px; font-size: 1.5rem; font-weight: 900; cursor: pointer; }
 
-        /* 푸터 - 매장명 줄바꿈 방지 */
-        footer { padding: 50px 15px 180px; text-align: center; background: #fafafa; border-top: 1px solid #eee; }
+        /* 푸터 */
+        footer { padding: 60px 15px 180px; text-align: center; background: #fafafa; border-top: 1px solid #eee; }
         .footer-shop-name {
-            font-size: clamp(1.2rem, 6vw, 2.2rem);
+            font-size: clamp(1.4rem, 6.5vw, 2.8rem);
             font-weight: 900;
             color: var(--uplus-magenta);
             white-space: nowrap;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
-        .footer-manager { font-weight: 700; color: #333; font-size: 1.1rem; white-space: nowrap; }
+        .footer-manager { font-weight: 700; color: #333; font-size: 1.2rem; white-space: nowrap; }
 
-        /* 하단 고정 상담 버튼 */
-        .floating-group { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; width: 92%; max-width: 500px; z-index: 1001; }
-        .f-btn { flex: 1; padding: 18px; border-radius: 50px; font-weight: 900; font-size: 1rem; text-decoration: none; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.2s; }
+        /* 플로팅 버튼 */
+        .floating-group { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; width: 94%; max-width: 500px; z-index: 1001; }
+        .f-btn { flex: 1; padding: 22px; border-radius: 60px; font-weight: 900; font-size: 1.15rem; text-decoration: none; text-align: center; box-shadow: 0 12px 25px rgba(0,0,0,0.25); transition: 0.2s; }
         .btn-kakao { background: #FEE500; color: #3c1e1e; }
         .btn-call { background: var(--uplus-magenta); color: white; }
 
-        /* PC 버전 최적화 */
+        /* PC 버전 최적화 (769px 이상) */
         @media (min-width: 769px) {
-            section { padding: 80px 20px; }
-            h1.main-title { font-size: 4.5rem; }
-            .phone-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-            .gift-container { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .family-box { flex-direction: row; gap: 20px; align-items: stretch; }
-            .usim-box { padding: 60px 40px; max-width: 900px; }
-            .nowrap-title { font-size: 2.8rem; }
-            .usim-price { font-size: 5.5rem; }
-            .footer-shop-name { font-size: 2.2rem; }
-            .f1, .f2, .f3, .f4 { width: 140px; height: 140px; }
+            section { padding: 140px 20px 80px; }
+            h1.main-title { font-size: 4.8rem; }
+            .phone-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+            .card-visual { height: 210px; }
+            .gift-container { gap: 25px; }
+            .gift-item { padding: 40px 25px; }
+            .gift-item h3 { font-size: 1.6rem; }
+            .gift-item p { font-size: 1.2rem; }
+            .family-box { flex-direction: row; gap: 25px; align-items: stretch; }
+            .usim-box { padding: 80px 40px; max-width: 1000px; }
+            .nowrap-title { font-size: 3rem; }
+            .usim-price { font-size: 5.8rem; }
+            .footer-shop-name { font-size: 2.8rem; }
+            .f1, .f2, .f3, .f4, .f7 { width: 150px; height: 150px; }
+            header { padding: 20px; }
+            header .brand-wrap { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- 다양한 색상의 카네이션 SVG 라이브러리 -->
+<!-- 검정색 테두리가 추가된 카네이션 SVG 라이브러리 -->
 <svg style="display: none;">
     <symbol id="flower-red" viewBox="0 0 100 100">
-        <path d="M50 85 Q50 60 50 40" stroke="#4CAF50" stroke-width="4" fill="none"/>
-        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FF4D6D"/>
-        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FF4D6D"/>
-        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#E6007E"/>
-        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#E6007E"/>
-        <circle cx="50" cy="45" r="8" fill="#FF85A1"/>
+        <path d="M50 85 Q50 60 50 40" stroke="#2e7d32" stroke-width="5" fill="none"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FF4D6D" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FF4D6D" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#E6007E" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#E6007E" stroke="#000" stroke-width="2.5"/>
+        <circle cx="50" cy="45" r="8" fill="#FF85A1" stroke="#000" stroke-width="2"/>
     </symbol>
     <symbol id="flower-yellow" viewBox="0 0 100 100">
-        <path d="M50 85 Q50 60 50 40" stroke="#8BC34A" stroke-width="4" fill="none"/>
-        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FFD700"/>
-        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FFD700"/>
-        <circle cx="50" cy="45" r="8" fill="#FFF9C4"/>
+        <path d="M50 85 Q50 60 50 40" stroke="#558b2f" stroke-width="5" fill="none"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FFD700" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FFD700" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#FFB800" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#FFB800" stroke="#000" stroke-width="2.5"/>
+        <circle cx="50" cy="45" r="8" fill="#FFF9C4" stroke="#000" stroke-width="2"/>
     </symbol>
     <symbol id="flower-white" viewBox="0 0 100 100">
-        <path d="M50 85 Q50 60 50 40" stroke="#81C784" stroke-width="4" fill="none"/>
-        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#F5F5F5"/>
-        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#F5F5F5"/>
-        <circle cx="50" cy="45" r="8" fill="#FFFFFF"/>
-    </symbol>
-    <symbol id="flower-pink" viewBox="0 0 100 100">
-        <path d="M50 85 Q50 60 50 40" stroke="#4CAF50" stroke-width="4" fill="none"/>
-        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FFB7C5"/>
-        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FFB7C5"/>
-        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#FF85A1"/>
-        <circle cx="50" cy="45" r="8" fill="#FFD1DC"/>
+        <path d="M50 85 Q50 60 50 40" stroke="#4caf50" stroke-width="5" fill="none"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#ffffff" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#ffffff" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <circle cx="50" cy="45" r="8" fill="#ffffff" stroke="#000" stroke-width="2"/>
     </symbol>
 </svg>
 
 <header>
     <div class="brand-wrap">
-        <span>사랑과 감사를 전하는</span> <div style="width:1px; height:12px; background:#ddd; margin:0 5px;"></div>
+        <span>사랑과 감사를 전하는</span> <div class="divider"></div>
         <span class="highlight">유플러스 체인지 페스티벌</span>
     </div>
 </header>
@@ -301,8 +307,9 @@
 <section class="hero">
     <div class="carnation-icon f1"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
     <div class="carnation-icon f2"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
-    <div class="carnation-icon f5" style="top:25%; right:5%;"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
-    
+    <div class="carnation-icon f7"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
+    <div class="carnation-icon f8"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
+
     <div class="hero-content">
         <div class="badge">MAY FAMILY MONTH SPECIAL</div>
         <div class="hero-gift-3d"><i class="fa-solid fa-gift"></i></div>
@@ -311,9 +318,9 @@
     </div>
 </section>
 
-<!-- Slide 2: 방문 사은품 (ㅁㅁㅁ 3열 배치) -->
+<!-- Slide 2: 방문 사은품 (ㅁㅁㅁ 배치) -->
 <section class="gifts">
-    <div class="carnation-icon f3"><svg width="100%" height="100%"><use href="#flower-pink"/></svg></div>
+    <div class="carnation-icon f5"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
     <h1 class="main-title">매장 방문만 해도<br><span>100% 선물 증정</span></h1>
     <div class="gift-container">
         <div class="gift-item">
@@ -328,15 +335,16 @@
         </div>
         <div class="gift-item">
             <i class="fa-solid fa-mug-hot"></i>
-            <h3>커피</h3>
+            <h3>메가커피</h3>
             <p>시원한 아이스<br>아메리카노</p>
         </div>
     </div>
 </section>
 
-<!-- Slide 3: 특가 단말기 (ㅁㅁ 2열 배치) -->
+<!-- Slide 3: 특가 단말기 (ㅁㅁ 배치) -->
 <section class="phone-list">
-    <div class="carnation-icon f6"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
+    <div class="carnation-icon f6"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
+    <div class="carnation-icon f9"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
     <h1 class="main-title">이달의 <span>특가 단말기</span></h1>
     <div class="phone-grid">
         <div class="phone-card">
@@ -362,15 +370,15 @@
     </div>
 </section>
 
-<!-- Slide 4: 유심변경 (박스 뚫림 방지 적용) -->
+<!-- Slide 4: 유심변경 -->
 <section class="usim-offer">
-    <div class="carnation-icon f7"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
+    <div class="carnation-icon f3"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
     <div class="usim-box">
         <div class="usim-visual"><i class="fa-solid fa-sim-card"></i></div>
         <h1 class="nowrap-title">기기변경없이 <span>통신사만 옮기셔도</span></h1>
-        <p style="font-size:1rem; font-weight:700; color:#666; margin-bottom:15px;">사용하시던 기계 그대로 혜택은 최고로!</p>
+        <p style="font-size:1.1rem; font-weight:700; color:#666; margin-bottom:20px;">사용하시던 기계 그대로 혜택은 최고로!</p>
         <div class="usim-price">현금 20<span>만원 지원</span></div>
-        <p style="margin-top:25px; font-weight:800; color:var(--uplus-magenta); background:var(--uplus-light-pink); display:inline-block; padding:8px 18px; border-radius:10px; font-size:0.8rem;">※ 위약금 지원 및 가입 혜택 최대 제공</p>
+        <p style="margin-top:30px; font-weight:800; color:var(--uplus-magenta); background:var(--uplus-light-pink); display:inline-block; padding:10px 25px; border-radius:12px; font-size:0.9rem;">※ 위약금 지원 및 가입 혜택 최대 제공</p>
     </div>
 </section>
 
@@ -381,15 +389,13 @@
     <div class="family-box">
         <div class="discount-card">
             <h2>투게더 결합</h2>
-            <div class="category">온가족 무제한 결합</div>
-            <div style="margin-bottom:8px;"><span style="font-size:1.1rem; font-weight:800;">성인</span> <span class="price-value">38,500원</span></div>
-            <div><span style="font-size:1.1rem; font-weight:800;">자녀</span> <span class="price-value">28,500원</span></div>
+            <div style="margin-bottom:12px;"><span style="font-size:1.4rem; font-weight:800;">성인</span> <span class="price-value">38,500원</span></div>
+            <div><span style="font-size:1.4rem; font-weight:800;">자녀</span> <span class="price-value">28,500원</span></div>
         </div>
         <div class="discount-card">
             <h2>참 쉬운 결합</h2>
-            <div class="category">키즈폰 / 효도폰 전용</div>
-            <div style="margin-bottom:8px;"><span style="font-size:1.1rem; font-weight:800;">키즈</span> <span class="price-value">17,600원</span></div>
-            <div><span style="font-size:1.1rem; font-weight:800;">효도</span> <span class="price-value">12,100원</span></div>
+            <div style="margin-bottom:12px;"><span style="font-size:1.4rem; font-weight:800;">키즈</span> <span class="price-value">17,600원</span></div>
+            <div><span style="font-size:1.4rem; font-weight:800;">효도</span> <span class="price-value">12,100원</span></div>
         </div>
     </div>
 </section>
@@ -410,7 +416,7 @@
 <footer>
     <span class="footer-shop-name">LG유플러스 00동 000점</span>
     <p class="footer-manager">📞 담당자: 000 010-0000-0000</p>
-    <p style="margin-top:50px; font-size: 0.8rem; color: #aaa;">&copy; 2026 LG Uplus Corp. All Rights Reserved.</p>
+    <p style="margin-top:60px; font-size: 0.85rem; color: #aaa;">&copy; 2026 LG Uplus Corp. All Rights Reserved.</p>
 </footer>
 
 <div class="floating-group">
