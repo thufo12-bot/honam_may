@@ -34,6 +34,7 @@
             text-align: center;
         }
 
+        /* 섹션 설정 - 간격 최적화 */
         section {
             min-height: auto;
             width: 100%;
@@ -41,16 +42,16 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 100px 10px 40px; /* 상단 여백을 100px로 늘려 큰 헤더 대응 */
+            padding: 100px 10px 60px; /* 상단 100px로 헤더 겹침 방지 */
             position: relative;
             overflow: hidden;
         }
 
-        /* [수정] 헤더 글씨 크기 확대 및 디자인 최적화 */
+        /* 헤더 디자인 - 글씨 크게 */
         header {
             position: fixed;
             top: 0; left: 0; width: 100%;
-            padding: 18px 10px; /* 패딩 소폭 확대 */
+            padding: 18px 10px; 
             background: rgba(255,255,255,0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #f0f0f0;
@@ -61,7 +62,7 @@
         }
         header .brand-wrap { 
             font-weight: 800; 
-            font-size: clamp(0.95rem, 4.5vw, 1.3rem); /* 글씨 크기 대폭 확대 */
+            font-size: clamp(1rem, 4.5vw, 1.35rem); 
             display: flex; 
             gap: 5px; 
             align-items: center; 
@@ -71,7 +72,7 @@
         header .highlight { color: var(--uplus-magenta); }
         header .divider {
             width: 1.5px;
-            height: 18px; /* 구분선 높이 확대 */
+            height: 18px; 
             background: #ddd;
             margin: 0 10px;
         }
@@ -100,24 +101,20 @@
             white-space: nowrap;
         }
         
-        /* 꽃 아이콘 설정 */
+        /* [수정] 꽃 아이콘 배치 로직 - 각 섹션마다 분산 */
         .carnation-icon {
             position: absolute;
             z-index: 1;
             pointer-events: none;
-            opacity: 0.9;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            opacity: 0.95;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+            animation: flowerFloat 6s ease-in-out infinite;
         }
 
-        .f1 { width: 80px; height: 80px; top: 12%; left: -10px; transform: rotate(-15deg); }
-        .f2 { width: 70px; height: 70px; top: 18%; right: -5px; transform: rotate(20deg); }
-        .f3 { width: 95px; height: 95px; bottom: 5%; left: 2%; transform: rotate(10deg); }
-        .f4 { width: 85px; height: 85px; bottom: 8%; right: 2%; transform: rotate(-10deg); }
-        .f5 { width: 60px; height: 60px; top: 40%; left: 5%; opacity: 0.6; }
-        .f6 { width: 55px; height: 55px; top: 55%; right: 5%; opacity: 0.6; }
-        .f7 { width: 110px; height: 110px; top: 5%; left: 40%; opacity: 0.3; }
-        .f8 { width: 70px; height: 70px; top: 75%; left: 8%; opacity: 0.7; }
-        .f9 { width: 80px; height: 80px; top: 70%; right: 8%; opacity: 0.7; }
+        @keyframes flowerFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-15px) rotate(8deg) scale(1.05); }
+        }
 
         .hero-gift-3d {
             font-size: 5.5rem;
@@ -138,7 +135,7 @@
             max-width: 95%;
         }
 
-        /* 방문 사은품 모바일 ㅁㅁㅁ */
+        /* 방문 사은품 ㅁㅁㅁ */
         .gift-container { 
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -156,7 +153,7 @@
         .gift-item h3 { font-size: 1.15rem; font-weight: 900; margin-bottom: 6px; color: #000; }
         .gift-item p { font-size: 0.9rem; color: var(--text-sub); line-height: 1.4; font-weight: 700; }
 
-        /* 특가 단말기 모바일 ㅁㅁ */
+        /* 특가 단말기 ㅁㅁ */
         .phone-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -182,7 +179,7 @@
         .phone-card .price { font-size: 2rem; font-weight: 900; color: var(--uplus-magenta); }
         .phone-card .sub-info { font-size: 0.85rem; color: #fff; background: var(--uplus-magenta); padding: 4px 10px; border-radius: 6px; margin-top: 8px; font-weight: 700; }
 
-        /* 유심변경 */
+        /* 유심변경 - 박스 뚫림 방지 */
         .usim-offer { background-color: #f0f8ff; }
         .usim-box {
             max-width: 950px; width: 100%; background: white; border-radius: 40px; padding: 45px 15px; text-align: center;
@@ -241,26 +238,22 @@
 
         /* 플로팅 버튼 */
         .floating-group { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; width: 94%; max-width: 500px; z-index: 1001; }
-        .f-btn { flex: 1; padding: 22px; border-radius: 60px; font-weight: 900; font-size: 1.15rem; text-decoration: none; text-align: center; box-shadow: 0 12px 25px rgba(0,0,0,0.25); transition: 0.2s; }
+        .f-btn { flex: 1; padding: 20px; border-radius: 60px; font-weight: 900; font-size: 1.15rem; text-decoration: none; text-align: center; box-shadow: 0 12px 25px rgba(0,0,0,0.25); transition: 0.2s; }
         .btn-kakao { background: #FEE500; color: #3c1e1e; }
         .btn-call { background: var(--uplus-magenta); color: white; }
 
-        /* PC 버전 최적화 (769px 이상) */
+        /* PC 최적화 */
         @media (min-width: 769px) {
-            section { padding: 140px 20px 80px; }
+            section { padding: 140px 20px 100px; }
             h1.main-title { font-size: 4.8rem; }
             .phone-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
             .card-visual { height: 210px; }
             .gift-container { gap: 25px; }
-            .gift-item { padding: 40px 25px; }
-            .gift-item h3 { font-size: 1.6rem; }
-            .gift-item p { font-size: 1.2rem; }
             .family-box { flex-direction: row; gap: 25px; align-items: stretch; }
             .usim-box { padding: 80px 40px; max-width: 1000px; }
             .nowrap-title { font-size: 3rem; }
             .usim-price { font-size: 5.8rem; }
             .footer-shop-name { font-size: 2.8rem; }
-            .f1, .f2, .f3, .f4, .f7 { width: 150px; height: 150px; }
             header { padding: 20px; }
             header .brand-wrap { font-size: 1.4rem; }
         }
@@ -268,31 +261,43 @@
 </head>
 <body>
 
-<!-- 검정색 테두리가 추가된 카네이션 SVG 라이브러리 -->
+<!-- 다양한 꽃 SVG 라이브러리 (검정 테두리 적용) -->
 <svg style="display: none;">
     <symbol id="flower-red" viewBox="0 0 100 100">
         <path d="M50 85 Q50 60 50 40" stroke="#2e7d32" stroke-width="5" fill="none"/>
-        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FF4D6D" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FF4D6D" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#E6007E" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#E6007E" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FF4D6D" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FF4D6D" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#E6007E" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#E6007E" stroke="#000" stroke-width="3"/>
         <circle cx="50" cy="45" r="8" fill="#FF85A1" stroke="#000" stroke-width="2"/>
     </symbol>
     <symbol id="flower-yellow" viewBox="0 0 100 100">
         <path d="M50 85 Q50 60 50 40" stroke="#558b2f" stroke-width="5" fill="none"/>
-        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FFD700" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FFD700" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#FFB800" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#FFB800" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FFD700" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FFD700" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#FFB800" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#FFB800" stroke="#000" stroke-width="3"/>
         <circle cx="50" cy="45" r="8" fill="#FFF9C4" stroke="#000" stroke-width="2"/>
     </symbol>
     <symbol id="flower-white" viewBox="0 0 100 100">
         <path d="M50 85 Q50 60 50 40" stroke="#4caf50" stroke-width="5" fill="none"/>
-        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#ffffff" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#ffffff" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
-        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#ffffff" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#ffffff" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#f5f5f5" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q50 15 25 25 Q40 50 50 45" fill="#f5f5f5" stroke="#000" stroke-width="3"/>
         <circle cx="50" cy="45" r="8" fill="#ffffff" stroke="#000" stroke-width="2"/>
+    </symbol>
+    <symbol id="flower-pink" viewBox="0 0 100 100">
+        <path d="M50 85 Q50 60 50 40" stroke="#2e7d32" stroke-width="5" fill="none"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FFB7C5" stroke="#000" stroke-width="3"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FFB7C5" stroke="#000" stroke-width="3"/>
+        <circle cx="50" cy="45" r="8" fill="#FFD1DC" stroke="#000" stroke-width="2"/>
+    </symbol>
+    <symbol id="flower-daisy" viewBox="0 0 100 100">
+        <path d="M50 85 Q50 60 50 40" stroke="#4CAF50" stroke-width="5" fill="none"/>
+        <circle cx="50" cy="45" r="30" fill="white" stroke="#000" stroke-width="3" />
+        <path d="M50 15 L50 75 M20 45 L80 45 M29 24 L71 66 M29 66 L71 24" stroke="#000" stroke-width="3" />
+        <circle cx="50" cy="45" r="12" fill="#FFD700" stroke="#000" stroke-width="3"/>
     </symbol>
 </svg>
 
@@ -303,13 +308,12 @@
     </div>
 </header>
 
-<!-- Slide 1: 히어로 -->
+<!-- Slide 1: 히어로 (꽃 3송이) -->
 <section class="hero">
-    <div class="carnation-icon f1"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
-    <div class="carnation-icon f2"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
-    <div class="carnation-icon f7"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
-    <div class="carnation-icon f8"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
-
+    <div class="carnation-icon" style="top:10%; left:-10px; width:90px; height:90px;"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
+    <div class="carnation-icon" style="top:15%; right:-5px; width:80px; height:80px;"><svg width="100%" height="100%"><use href="#flower-daisy"/></svg></div>
+    <div class="carnation-icon" style="bottom:10%; right:15%; width:70px; height:70px; opacity:0.4;"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
+    
     <div class="hero-content">
         <div class="badge">MAY FAMILY MONTH SPECIAL</div>
         <div class="hero-gift-3d"><i class="fa-solid fa-gift"></i></div>
@@ -318,9 +322,11 @@
     </div>
 </section>
 
-<!-- Slide 2: 방문 사은품 (ㅁㅁㅁ 배치) -->
+<!-- Slide 2: 방문 사은품 (꽃 2송이) -->
 <section class="gifts">
-    <div class="carnation-icon f5"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
+    <div class="carnation-icon" style="top:5%; right:5%; width:90px; height:90px;"><svg width="100%" height="100%"><use href="#flower-pink"/></svg></div>
+    <div class="carnation-icon" style="bottom:10%; left:5%; width:100px; height:100px; opacity:0.5;"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
+
     <h1 class="main-title">매장 방문만 해도<br><span>100% 선물 증정</span></h1>
     <div class="gift-container">
         <div class="gift-item">
@@ -341,10 +347,11 @@
     </div>
 </section>
 
-<!-- Slide 3: 특가 단말기 (ㅁㅁ 배치) -->
+<!-- Slide 3: 특가 단말기 (꽃 2송이) -->
 <section class="phone-list">
-    <div class="carnation-icon f6"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
-    <div class="carnation-icon f9"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
+    <div class="carnation-icon" style="top:2%; left:2%; width:85px; height:85px;"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
+    <div class="carnation-icon" style="bottom:5%; right:2%; width:90px; height:90px;"><svg width="100%" height="100%"><use href="#flower-daisy"/></svg></div>
+
     <h1 class="main-title">이달의 <span>특가 단말기</span></h1>
     <div class="phone-grid">
         <div class="phone-card">
@@ -370,9 +377,11 @@
     </div>
 </section>
 
-<!-- Slide 4: 유심변경 -->
+<!-- Slide 4: 유심변경 (꽃 2송이) -->
 <section class="usim-offer">
-    <div class="carnation-icon f3"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
+    <div class="carnation-icon" style="top:10%; left:10%; width:110px; height:110px;"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
+    <div class="carnation-icon" style="bottom:10%; right:5%; width:100px; height:100px;"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
+
     <div class="usim-box">
         <div class="usim-visual"><i class="fa-solid fa-sim-card"></i></div>
         <h1 class="nowrap-title">기기변경없이 <span>통신사만 옮기셔도</span></h1>
@@ -382,9 +391,11 @@
     </div>
 </section>
 
-<!-- Slide 5: 가족 결합 할인 -->
+<!-- Slide 5: 가족 결합 할인 (꽃 2송이) -->
 <section class="family-discount">
-    <div class="carnation-icon f4"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
+    <div class="carnation-icon" style="top:5%; left:20%; width:80px; height:80px;"><svg width="100%" height="100%"><use href="#flower-pink"/></svg></div>
+    <div class="carnation-icon" style="bottom:5%; right:20%; width:100px; height:100px;"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
+
     <h1 class="main-title">뭉칠수록 커지는<br><span>결합 할인 혜택</span></h1>
     <div class="family-box">
         <div class="discount-card">
@@ -394,14 +405,17 @@
         </div>
         <div class="discount-card">
             <h2>참 쉬운 결합</h2>
-            <div style="margin-bottom:12px;"><span style="font-size:1.4rem; font-weight:800;">키즈</span> <span class="price-value">17,600원</span></div>
-            <div><span style="font-size:1.4rem; font-weight:800;">효도</span> <span class="price-value">12,100원</span></div>
+            <div style="margin-bottom:12px;"><span style="font-size:1.3rem; font-weight:800;">키즈</span> <span class="price-value">17,600원</span></div>
+            <div><span style="font-size:1.3rem; font-weight:800;">효도</span> <span class="price-value">12,100원</span></div>
         </div>
     </div>
 </section>
 
-<!-- Slide 6: 상담 신청 -->
-<section class="apply">
+<!-- Slide 6: 상담 신청 (꽃 2송이) -->
+<section class="apply" id="apply-section">
+    <div class="carnation-icon" style="top:5%; left:2%; width:120px; height:120px; opacity:0.3;"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
+    <div class="carnation-icon" style="bottom:15%; right:2%; width:120px; height:120px; opacity:0.3;"><svg width="100%" height="100%"><use href="#flower-daisy"/></svg></div>
+
     <h1 class="main-title">지금 바로 혜택 신청하고<br><span>기프티콘 받기</span></h1>
     <div class="apply-box">
         <form id="consultForm">
