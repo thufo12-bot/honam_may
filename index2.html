@@ -19,7 +19,6 @@
             --white: #ffffff;
         }
 
-        /* 기본 설정 */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
         html, body {
             margin: 0; padding: 0;
@@ -37,8 +36,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 100px 20px;
+            padding: 80px 20px;
             position: relative;
+            overflow: hidden;
         }
 
         header {
@@ -56,10 +56,10 @@
         header .brand-wrap { font-weight: 800; font-size: 1rem; display: flex; gap: 8px; align-items: center; }
         header .highlight { color: var(--uplus-magenta); }
 
-        h1.main-title { font-size: 3rem; font-weight: 900; line-height: 1.2; margin: 0; color: #222; text-align: center; z-index: 10; }
+        h1.main-title { font-size: 3rem; font-weight: 900; line-height: 1.2; margin: 0; color: #222; text-align: center; z-index: 10; position: relative; }
         h1.main-title span { color: var(--uplus-magenta); }
 
-        /* [슬라이드 1] 히어로 - 정갈한 레이아웃으로 변경 */
+        /* [슬라이드 1] 히어로 - 인물들 개별 크롭 배치 */
         .hero { 
             background: var(--uplus-light-pink);
             background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #fff5f9 100%);
@@ -73,18 +73,30 @@
             align-items: center;
             text-align: center;
             width: 100%;
-            max-width: 800px;
+            max-width: 1000px;
         }
 
-        /* 가족 이미지를 지저분한 배경이 아닌, 정갈한 메인 비주얼로 배치 */
-        .family-poster {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(230, 0, 126, 0.15);
-            margin-bottom: 30px;
-            border: 5px solid white;
+        /* --- CSS 크롭을 활용한 인물 개별 배치 --- */
+        .person-crop {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: url('가족이미지.jpg');
+            background-size: 400px 400px; /* 원본 이미지의 비율에 맞춰 조정 */
+            border-radius: 50%;
+            background-repeat: no-repeat;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            z-index: 5;
+            transition: transform 0.3s ease;
         }
+        .person-crop:hover { transform: scale(1.1) rotate(5deg); }
+
+        /* 각 인물 위치 좌표값 (가족이미지.jpg 기준) */
+        .p-kids { top: -40px; left: 0%; background-position: 0px 0px; } /* 어린이날 */
+        .p-parents { top: -40px; right: 0%; background-position: -230px 0px; } /* 어버이날 */
+        .p-teacher { bottom: -60px; left: 5%; background-position: 0px -230px; } /* 스승의날 */
+        .p-senior { bottom: -60px; right: 5%; background-position: -230px -230px; } /* 부부의날 */
 
         .badge { background: var(--uplus-magenta); color: white; padding: 10px 30px; border-radius: 50px; font-weight: 800; margin-bottom: 25px; display: inline-block; font-size: 1.1rem; }
         
@@ -124,7 +136,6 @@
             background: #fff; border-radius: 25px; padding: 40px 20px; border: 2px solid #f2f2f2; text-align: center; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; width: 100%;
         }
-        /* 이미지 영역 높이 고정 및 버디4 비율 최적화 */
         .card-visual { 
             width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px;
             overflow: hidden;
@@ -133,11 +144,7 @@
             max-width: 100%; max-height: 100%; object-fit: contain;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); 
         }
-        
-        .phone-card h3 { 
-            font-size: 1.3rem; font-weight: 900; margin: 10px 0; color: #333; 
-            height: 3rem; display: flex; align-items: center; justify-content: center; text-align: center;
-        }
+        .phone-card h3 { font-size: 1.3rem; font-weight: 900; margin: 10px 0; color: #333; height: 3rem; display: flex; align-items: center; justify-content: center; text-align: center; }
         .phone-card .price { font-size: 2.5rem; font-weight: 900; color: var(--uplus-magenta); }
         .phone-card .sub-info { font-size: 1rem; color: #fff; background: var(--uplus-magenta); padding: 5px 15px; border-radius: 8px; margin-top: 15px; font-weight: 700; }
 
@@ -190,9 +197,14 @@
 
         @media (max-width: 1024px) {
             h1.main-title { font-size: 2.4rem; }
-            .hero-info { font-size: 1.2rem; padding: 18px 35px; }
+            .hero-info { font-size: 1.1rem; padding: 15px 30px; }
             .phone-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .apply-box { padding: 40px 25px; }
+            .person-crop { width: 100px; height: 100px; background-size: 260px 260px; }
+            .p-kids { top: -20px; left: -10px; background-position: 0px 0px; }
+            .p-parents { top: -20px; right: -10px; background-position: -155px 0px; }
+            .p-teacher { bottom: -40px; left: -10px; background-position: 0px -155px; }
+            .p-senior { bottom: -40px; right: -10px; background-position: -155px -155px; }
         }
 
         @media (min-width: 1025px) {
@@ -211,14 +223,17 @@
     </div>
 </header>
 
-<!-- Slide 1: 히어로 (가족 이미지를 카드 형태로 정중앙 배치) -->
+<!-- Slide 1: 히어로 (가족 인물들 개별 크롭 배치) -->
 <section class="hero">
     <div class="hero-content">
+        <!-- 인물 크롭 개별 배치 -->
+        <div class="person-crop p-kids"></div>
+        <div class="person-crop p-parents"></div>
+        <div class="person-crop p-teacher"></div>
+        <div class="person-crop p-senior"></div>
+
         <div class="badge">MAY FAMILY MONTH SPECIAL</div>
         
-        <!-- 지저분한 배경 대신 깔끔하게 이미지 배치 -->
-        <img src="가족이미지.jpg" alt="5월 가정의 달" class="family-poster">
-
         <div class="hero-gift-3d">
             <i class="fa-solid fa-gift"></i>
         </div>
@@ -255,7 +270,7 @@
     </div>
 </section>
 
-<!-- Slide 3: 특가 단말기 (버디4 크기 맞춤 완성) -->
+<!-- Slide 3: 특가 단말기 (파일명 및 크기 정렬 완료) -->
 <section class="phone-list">
     <h1 class="main-title" style="margin-bottom:60px;">이달의 <span>특가 단말기</span></h1>
     <div class="phone-grid">
@@ -335,6 +350,7 @@
             <div class="form-group">
                 <label>현재 사용 중인 통신사</label>
                 <select name="carrier" required>
+                    <option value="">통신사를 선택하세요</option>
                     <option value="SKT">SKT</option>
                     <option value="KT">KT</option>
                     <option value="알뜰폰">알뜰폰</option>
