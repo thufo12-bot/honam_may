@@ -13,16 +13,12 @@
             --uplus-magenta: #E6007E;
             --uplus-light-pink: #FFF5F9;
             --warm-rose: #FFCCD5;
-            --carnation-red: #FF4D6D;
-            --carnation-yellow: #FFD700;
-            --carnation-white: #FDFDFD;
             --text-main: #222222;
             --text-sub: #555555;
-            --bg-gray: #F8F9FA;
             --white: #ffffff;
         }
 
-        /* 기본 설정 및 중앙 정렬 강화 */
+        /* 기본 설정 */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
         html, body {
             margin: 0; padding: 0;
@@ -35,14 +31,15 @@
             text-align: center;
         }
 
+        /* [수정] 구간 간격 축소 및 높이 최적화 */
         section {
-            min-height: 100vh;
+            min-height: auto; /* 100vh 제거로 간격 뚫림 방지 */
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 60px 10px;
+            padding: 40px 15px; /* 상하 여백 축소 */
             position: relative;
             overflow: hidden;
         }
@@ -86,25 +83,30 @@
             white-space: nowrap;
         }
         
-        /* 카네이션 아이콘 */
+        /* [수정] 꽃 아이콘 대량 배치 및 애니메이션 */
         .carnation-icon {
             position: absolute;
             z-index: 1;
-            animation: flowerFloat 5s ease-in-out infinite;
+            animation: flowerFloat 6s ease-in-out infinite;
             pointer-events: none;
-            opacity: 0.8;
+            opacity: 0.85;
         }
         @keyframes flowerFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(8deg); }
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-15px) rotate(10deg) scale(1.1); }
         }
 
-        .c1 { width: 70px; height: 70px; top: 10%; left: -10px; }
-        .c2 { width: 60px; height: 60px; top: 15%; right: -10px; animation-delay: 1s; }
-        .c3 { width: 80px; height: 80px; bottom: 10%; left: 0%; animation-delay: 2s; }
+        /* 꽃 위치들 - 구석구석 알록달록하게 */
+        .f1 { width: 80px; height: 80px; top: 10%; left: -15px; }
+        .f2 { width: 70px; height: 70px; top: 15%; right: -10px; animation-delay: 1s; }
+        .f3 { width: 90px; height: 90px; bottom: 10%; left: 5%; animation-delay: 2s; }
+        .f4 { width: 100px; height: 100px; bottom: 5%; right: 2%; animation-delay: 0.5s; }
+        .f5 { width: 60px; height: 60px; top: 40%; left: 2%; opacity: 0.5; }
+        .f6 { width: 50px; height: 50px; top: 45%; right: 2%; opacity: 0.5; animation-delay: 3s; }
+        .f7 { width: 75px; height: 75px; top: 60%; left: 10%; opacity: 0.4; }
 
         .hero-gift-3d {
-            font-size: 4.5rem;
+            font-size: 5rem;
             color: var(--uplus-magenta);
             margin-bottom: 10px;
             filter: drop-shadow(0 15px 25px rgba(230, 0, 126, 0.2));
@@ -116,30 +118,31 @@
             font-size: clamp(0.85rem, 3.8vw, 1.6rem);
             color: var(--uplus-magenta); font-weight: 900; background: white;
             padding: 12px 25px; border-radius: 100px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            margin: 20px auto 0 auto; border: 2px solid var(--uplus-magenta);
+            margin: 20px auto 0 auto; border: 2.3px solid var(--uplus-magenta);
             white-space: nowrap;
             width: fit-content;
+            max-width: 92%;
         }
 
-        /* [수정] 방문 사은품 컨테이너 - 모바일 ㅁㅁㅁ 및 PC 중앙 정렬 */
+        /* 방문 사은품 모바일 ㅁㅁㅁ */
         .gift-container { 
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px; 
             width: 100%; 
             max-width: 1100px; 
-            margin: 30px auto 0; 
-            justify-content: center; /* PC 중앙 정렬용 */
+            margin: 25px auto 0; 
+            z-index: 10;
         }
         .gift-item { 
             background: white; border-radius: 15px; padding: 15px 5px; text-align: center; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid #f0f0f0; 
         }
-        .gift-item i { font-size: 1.6rem; color: var(--uplus-magenta); margin-bottom: 8px; }
-        .gift-item h3 { font-size: 0.8rem; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.5px; }
+        .gift-item i { font-size: 1.8rem; color: var(--uplus-magenta); margin-bottom: 8px; }
+        .gift-item h3 { font-size: 0.85rem; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.5px; }
         .gift-item p { font-size: 0.65rem; color: #777; line-height: 1.3; }
 
-        /* [수정] 특가 단말기 그리드 - 모바일 ㅁㅁ 및 PC 중앙 정렬 */
+        /* 특가 단말기 그리드 모바일 ㅁㅁ */
         .phone-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -147,49 +150,47 @@
             width: 100%; 
             max-width: 1100px; 
             margin: 30px auto 0; 
-            justify-content: center; /* PC 중앙 정렬용 */
+            z-index: 10;
         }
         .phone-card { 
-            background: #fff; border-radius: 20px; padding: 15px 10px; border: 2.5px solid #f2f2f2; text-align: center; 
+            background: #fff; border-radius: 20px; padding: 15px 10px; border: 1.5px solid #f2f2f2; text-align: center; 
             display: flex; flex-direction: column; align-items: center; width: 100%;
         }
         .card-visual { 
-            width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; 
+            width: 100%; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; 
             overflow: hidden;
         }
         .phone-card img { 
             max-width: 90%; max-height: 100%; object-fit: contain;
             filter: drop-shadow(0 8px 12px rgba(0,0,0,0.06)); 
         }
-        .phone-card h3 { font-size: 0.9rem; font-weight: 800; margin: 5px 0; color: #333; min-height: 2.2rem; display: flex; align-items: center; }
-        .phone-card .price { font-size: 1.6rem; font-weight: 900; color: var(--uplus-magenta); }
-        .phone-card .sub-info { font-size: 0.7rem; color: #fff; background: var(--uplus-magenta); padding: 3px 10px; border-radius: 6px; margin-top: 8px; font-weight: 700; }
+        .phone-card h3 { font-size: 0.95rem; font-weight: 800; margin: 5px 0; color: #333; min-height: 2.2rem; display: flex; align-items: center; justify-content: center; }
+        .phone-card .price { font-size: 1.8rem; font-weight: 900; color: var(--uplus-magenta); }
+        .phone-card .sub-info { font-size: 0.75rem; color: #fff; background: var(--uplus-magenta); padding: 4px 10px; border-radius: 6px; margin-top: 8px; font-weight: 700; }
 
-        /* 유심변경 - 현금 문구 뚫고 나감 방지 최종 수리 */
+        /* 유심변경 - 현금 문구 줄바꿈 방지 */
         .usim-offer { background-color: #f0f8ff; }
         .usim-box {
-            max-width: 950px; width: 100%; background: white; border-radius: 35px; padding: 40px 15px; text-align: center;
+            max-width: 950px; width: 100%; background: white; border-radius: 35px; padding: 35px 15px; text-align: center;
             box-shadow: 0 20px 40px rgba(74, 144, 226, 0.08); border: 2.5px solid rgba(74, 144, 226, 0.05);
             margin: 0 auto;
         }
         .usim-visual { font-size: 4rem; color: #4A90E2; margin-bottom: 15px; }
         .nowrap-title { 
             white-space: nowrap; 
-            font-size: clamp(0.85rem, 5.5vw, 2.5rem); 
+            font-size: clamp(0.9rem, 6vw, 2.5rem); 
             font-weight: 900; color: #222; margin-bottom: 15px; 
             display: block; width: 100%; letter-spacing: -1px;
         }
         .nowrap-title span { color: var(--uplus-magenta); }
-        
-        /* [핵심수정] 현금 지원 문구 박스 뚫림 방지용 폰트 축소 */
         .usim-price {
-            font-size: clamp(1.6rem, 10vw, 5rem);
+            font-size: clamp(1.8rem, 11vw, 5rem);
             font-weight: 900; color: var(--uplus-magenta); 
-            line-height: 1.1; margin: 10px 0;
+            line-height: 1.1; margin: 15px 0;
             white-space: nowrap;
         }
 
-        /* [수정] 결합 할인 - PC 중앙 쏠림 해결 */
+        /* 결합 할인 PC/모바일 정렬 */
         .family-box { 
             display: flex; 
             flex-direction: column; 
@@ -197,73 +198,68 @@
             width: 100%; 
             max-width: 1100px; 
             margin: 30px auto 0; 
-            justify-content: center; /* PC 가로 배치 시 중앙 정렬 */
-            align-items: center; /* 모바일 세로 배치 시 중앙 정렬 */
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
         }
         .discount-card { 
-            background: white; padding: 25px 15px; border-radius: 30px; 
+            background: white; padding: 30px 20px; border-radius: 30px; 
             box-shadow: 0 15px 35px rgba(230,0,126,0.05); text-align: center;
             border: 1.5px solid var(--warm-rose);
-            width: 100%; /* 모바일에서 가로 꽉 채우기 */
+            width: 100%;
             max-width: 500px;
+            flex: 1;
         }
-        .discount-card h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: 8px; color: var(--uplus-magenta); }
-        .discount-card .category { font-size: 0.95rem; font-weight: 800; color: #555; margin-bottom: 15px; }
-        .price-value { font-size: 2.2rem; font-weight: 900; color: var(--uplus-magenta); }
+        .discount-card h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; color: var(--uplus-magenta); }
+        .price-value { font-size: 2.5rem; font-weight: 900; color: var(--uplus-magenta); }
 
         /* 상담 신청 */
-        .apply { height: auto; min-height: 100vh; padding: 60px 15px; }
+        .apply { padding: 40px 15px; }
         .apply-box { 
             max-width: 600px; width: 100%; background: white; padding: 35px 20px; 
             border-radius: 35px; border: 1.5px solid #eee; box-shadow: 0 20px 50px rgba(0,0,0,0.05);
             margin: 20px auto;
         }
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group input, .form-group select { width: 100%; padding: 16px; border-radius: 12px; border: 1.5px solid #ddd; font-size: 1rem; background: #fafafa; }
-        .submit-btn { width: 100%; padding: 20px; background: var(--uplus-magenta); color: white; border: none; border-radius: 15px; font-size: 1.3rem; font-weight: 900; cursor: pointer; }
+        .form-group { margin-bottom: 15px; }
+        .form-group input, .form-group select { width: 100%; padding: 18px; border-radius: 12px; border: 1.5px solid #ddd; font-size: 1rem; background: #fafafa; }
+        .submit-btn { width: 100%; padding: 22px; background: var(--uplus-magenta); color: white; border: none; border-radius: 15px; font-size: 1.4rem; font-weight: 900; cursor: pointer; }
 
-        /* 푸터 줄바꿈 수리 */
-        footer { padding: 50px 10px 180px; text-align: center; background: #fafafa; border-top: 1px solid #eee; }
+        /* 푸터 - 매장명 줄바꿈 방지 */
+        footer { padding: 50px 15px 180px; text-align: center; background: #fafafa; border-top: 1px solid #eee; }
         .footer-shop-name {
-            font-size: clamp(1.1rem, 5.5vw, 2.2rem);
+            font-size: clamp(1.2rem, 6vw, 2.2rem);
             font-weight: 900;
             color: var(--uplus-magenta);
             white-space: nowrap;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
-        .footer-manager { font-weight: 700; color: #333; font-size: 1rem; white-space: nowrap; }
+        .footer-manager { font-weight: 700; color: #333; font-size: 1.1rem; white-space: nowrap; }
 
-        /* 고정 버튼 */
-        .floating-group { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; width: 94%; max-width: 500px; z-index: 1001; }
-        .f-btn { flex: 1; padding: 16px; border-radius: 50px; font-weight: 900; font-size: 0.9rem; text-decoration: none; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: 0.2s; }
+        /* 하단 고정 상담 버튼 */
+        .floating-group { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; width: 92%; max-width: 500px; z-index: 1001; }
+        .f-btn { flex: 1; padding: 18px; border-radius: 50px; font-weight: 900; font-size: 1rem; text-decoration: none; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.2s; }
         .btn-kakao { background: #FEE500; color: #3c1e1e; }
         .btn-call { background: var(--uplus-magenta); color: white; }
 
-        /* PC 버전 최적화 (769px 이상) */
+        /* PC 버전 최적화 */
         @media (min-width: 769px) {
+            section { padding: 80px 20px; }
             h1.main-title { font-size: 4.5rem; }
             .phone-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-            .card-visual { height: 200px; }
             .gift-container { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .gift-item { padding: 30px 20px; }
-            .gift-item i { font-size: 3rem; }
-            .gift-item h3 { font-size: 1.4rem; }
-            .gift-item p { font-size: 1.1rem; }
             .family-box { flex-direction: row; gap: 20px; align-items: stretch; }
-            .discount-card { width: auto; flex: 1; }
-            .apply-box { padding: 50px 45px; }
-            .usim-box { padding: 60px 40px; }
+            .usim-box { padding: 60px 40px; max-width: 900px; }
             .nowrap-title { font-size: 2.8rem; }
             .usim-price { font-size: 5.5rem; }
-            .c1, .c2, .c3 { width: 140px; height: 140px; }
             .footer-shop-name { font-size: 2.2rem; }
+            .f1, .f2, .f3, .f4 { width: 140px; height: 140px; }
         }
     </style>
 </head>
 <body>
 
-<!-- 카네이션 SVG 컬러 라이브러리 -->
+<!-- 다양한 색상의 카네이션 SVG 라이브러리 -->
 <svg style="display: none;">
     <symbol id="flower-red" viewBox="0 0 100 100">
         <path d="M50 85 Q50 60 50 40" stroke="#4CAF50" stroke-width="4" fill="none"/>
@@ -282,7 +278,15 @@
     <symbol id="flower-white" viewBox="0 0 100 100">
         <path d="M50 85 Q50 60 50 40" stroke="#81C784" stroke-width="4" fill="none"/>
         <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#F5F5F5"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#F5F5F5"/>
         <circle cx="50" cy="45" r="8" fill="#FFFFFF"/>
+    </symbol>
+    <symbol id="flower-pink" viewBox="0 0 100 100">
+        <path d="M50 85 Q50 60 50 40" stroke="#4CAF50" stroke-width="4" fill="none"/>
+        <path d="M50 45 Q70 30 85 45 Q70 60 50 45" fill="#FFB7C5"/>
+        <path d="M50 45 Q30 30 15 45 Q30 60 50 45" fill="#FFB7C5"/>
+        <path d="M50 45 Q50 15 75 25 Q60 50 50 45" fill="#FF85A1"/>
+        <circle cx="50" cy="45" r="8" fill="#FFD1DC"/>
     </symbol>
 </svg>
 
@@ -295,27 +299,21 @@
 
 <!-- Slide 1: 히어로 -->
 <section class="hero">
-    <div class="carnation-icon c1"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
-    <div class="carnation-icon c2"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
-    <div class="carnation-icon c3"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
-
+    <div class="carnation-icon f1"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
+    <div class="carnation-icon f2"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
+    <div class="carnation-icon f5" style="top:25%; right:5%;"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
+    
     <div class="hero-content">
         <div class="badge">MAY FAMILY MONTH SPECIAL</div>
-        
-        <div class="hero-gift-3d">
-            <i class="fa-solid fa-gift"></i>
-        </div>
-
+        <div class="hero-gift-3d"><i class="fa-solid fa-gift"></i></div>
         <h1 class="main-title">가정의 달도<br><span>유플러스와 함께</span></h1>
-
-        <div class="hero-info">
-            💝 인기 모델 최대 지원 & 키즈/효도폰 0원
-        </div>
+        <div class="hero-info">💝 인기 모델 최대 지원 & 키즈/효도폰 0원</div>
     </div>
 </section>
 
-<!-- Slide 2: 방문 사은품 (모바일 ㅁㅁㅁ 나란히 배치) -->
+<!-- Slide 2: 방문 사은품 (ㅁㅁㅁ 3열 배치) -->
 <section class="gifts">
+    <div class="carnation-icon f3"><svg width="100%" height="100%"><use href="#flower-pink"/></svg></div>
     <h1 class="main-title">매장 방문만 해도<br><span>100% 선물 증정</span></h1>
     <div class="gift-container">
         <div class="gift-item">
@@ -336,50 +334,49 @@
     </div>
 </section>
 
-<!-- Slide 3: 특가 단말기 (모바일 ㅁㅁ 2열 배치) -->
+<!-- Slide 3: 특가 단말기 (ㅁㅁ 2열 배치) -->
 <section class="phone-list">
+    <div class="carnation-icon f6"><svg width="100%" height="100%"><use href="#flower-yellow"/></svg></div>
     <h1 class="main-title">이달의 <span>특가 단말기</span></h1>
     <div class="phone-grid">
         <div class="phone-card">
             <div class="card-visual"><img src="s26 이미지.jpg" alt="S26"></div>
             <h3>갤럭시 S26</h3>
             <div class="price">0<span>원~</span></div>
-            <div class="sub-info">공시지원금 최대</div>
         </div>
         <div class="phone-card">
             <div class="card-visual"><img src="아이폰17 이미지.jpg" alt="iPhone 17"></div>
             <h3>iPhone 17</h3>
             <div class="price">0<span>원~</span></div>
-            <div class="sub-info">가정의달 한정</div>
         </div>
         <div class="phone-card">
             <div class="card-visual"><img src="무너폰이미지.jpg" alt="무너에디션2"></div>
             <h3>U+ 무너폰</h3>
             <div class="price">0<span>원</span></div>
-            <div class="sub-info">우리 아이 첫폰</div>
         </div>
         <div class="phone-card">
             <div class="card-visual"><img src="버디4&폴더폰.jpg" alt="버디4 & 폴더폰"></div>
             <h3>버디4/폴더4</h3>
             <div class="price">0<span>원</span></div>
-            <div class="sub-info">부모님 효도폰</div>
         </div>
     </div>
 </section>
 
 <!-- Slide 4: 유심변경 (박스 뚫림 방지 적용) -->
 <section class="usim-offer">
+    <div class="carnation-icon f7"><svg width="100%" height="100%"><use href="#flower-white"/></svg></div>
     <div class="usim-box">
         <div class="usim-visual"><i class="fa-solid fa-sim-card"></i></div>
         <h1 class="nowrap-title">기기변경없이 <span>통신사만 옮기셔도</span></h1>
         <p style="font-size:1rem; font-weight:700; color:#666; margin-bottom:15px;">사용하시던 기계 그대로 혜택은 최고로!</p>
         <div class="usim-price">현금 20<span>만원 지원</span></div>
-        <p style="margin-top:30px; font-weight:800; color:var(--uplus-magenta); background:var(--uplus-light-pink); display:inline-block; padding:8px 18px; border-radius:10px; font-size:0.8rem;">※ 위약금 지원 및 가입 혜택 최대 제공</p>
+        <p style="margin-top:25px; font-weight:800; color:var(--uplus-magenta); background:var(--uplus-light-pink); display:inline-block; padding:8px 18px; border-radius:10px; font-size:0.8rem;">※ 위약금 지원 및 가입 혜택 최대 제공</p>
     </div>
 </section>
 
-<!-- Slide 5: 가족 결합 할인 (PC 중앙 정렬 완벽 수리) -->
+<!-- Slide 5: 가족 결합 할인 -->
 <section class="family-discount">
+    <div class="carnation-icon f4"><svg width="100%" height="100%"><use href="#flower-red"/></svg></div>
     <h1 class="main-title">뭉칠수록 커지는<br><span>결합 할인 혜택</span></h1>
     <div class="family-box">
         <div class="discount-card">
@@ -398,31 +395,13 @@
 </section>
 
 <!-- Slide 6: 상담 신청 -->
-<section class="apply" id="apply-section">
+<section class="apply">
     <h1 class="main-title">지금 바로 혜택 신청하고<br><span>기프티콘 받기</span></h1>
     <div class="apply-box">
         <form id="consultForm">
-            <div class="form-group">
-                <input type="text" id="userNameInput" placeholder="신청인 성함을 입력하세요" required maxlength="8">
-                <input type="hidden" id="maskedName" name="maskedName">
-            </div>
-            <div class="form-group">
-                <select name="carrier" required>
-                    <option value="">현재 사용중인 통신사</option>
-                    <option value="SKT">SKT</option>
-                    <option value="KT">KT</option>
-                    <option value="UPLUS">U+ 사용중</option>
-                    <option value="알뜰폰">알뜰폰</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <select name="product" required>
-                    <option value="방문사은품">방문 사은품 받기</option>
-                    <option value="0원폰">갤럭시/아이폰/키즈폰 0원 특가</option>
-                    <option value="유심변경">기기 그대로 통신사 이동</option>
-                    <option value="가족결합">가족 결합 통신비 절감 상담</option>
-                </select>
-            </div>
+            <div class="form-group"><input type="text" id="userNameInput" placeholder="신청인 성함을 입력하세요" required maxlength="8"><input type="hidden" id="maskedName" name="maskedName"></div>
+            <div class="form-group"><select name="carrier" required><option value="">현재 사용중인 통신사</option><option value="SKT">SKT</option><option value="KT">KT</option><option value="UPLUS">U+ 사용중</option><option value="알뜰폰">알뜰폰</option></select></div>
+            <div class="form-group"><select name="product" required><option value="방문사은품">방문 사은품 받기</option><option value="0원폰">갤럭시/아이폰/키즈폰 0원 특가</option><option value="유심변경">기기 그대로 통신사 이동</option><option value="가족결합">가족 결합 통신비 절감 상담</option></select></div>
             <button type="submit" class="submit-btn" id="submitBtn">혜택 신청 완료</button>
         </form>
     </div>
@@ -434,14 +413,12 @@
     <p style="margin-top:50px; font-size: 0.8rem; color: #aaa;">&copy; 2026 LG Uplus Corp. All Rights Reserved.</p>
 </footer>
 
-<!-- 플로팅 고정 버튼 -->
 <div class="floating-group">
     <a href="https://open.kakao.com/o/sWmnjdii" class="f-btn btn-kakao">실시간 카톡 상담</a>
     <a href="tel:01000000000" class="f-btn btn-call">전화 상담하기</a>
 </div>
 
 <script>
-    // 1. 성함 마스킹 로직
     const nameInput = document.getElementById('userNameInput');
     const maskedHidden = document.getElementById('maskedName');
     let isComposing = false; 
@@ -469,27 +446,22 @@
         maskedHidden.value = result; 
     }
 
-    // 2. 텔레그램 전송
     const consultForm = document.getElementById('consultForm');
     if (consultForm) {
         consultForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const ucrmUrl = "https://ucrm.lguplus.co.kr/mbl/v2/rcmd/moveInfo?param=cHBzbTc2ODYmMjAyNjAyMTIxNDI4NTk=";
             window.open(ucrmUrl, '_blank');
-            
             const btn = document.getElementById('submitBtn');
             btn.innerText = "이동 중...";
             btn.disabled = true;
-            
             const formData = new FormData(this);
             const carrier = formData.get('carrier');
             const product = formData.get('product');
             const finalMaskedName = document.getElementById('maskedName').value;
-
             const BOT_TOKEN = "8633339161:AAFrUxspxKfsDgCGvpOdhh_SJa6gRhasFkQ"; 
             const CHAT_ID = "8627078854"; 
             const text = `🚨 [5월 가정의달 유체페 신청]\n👤 이름: ${finalMaskedName}\n📶 통신사: ${carrier}\n📱 관심: ${product}\n\n⚠️ 고객이 공식 접수페이지로 이동했습니다. 해피콜 준비하세요!`;
-
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -498,6 +470,5 @@
         });
     }
 </script>
-
 </body>
 </html>
